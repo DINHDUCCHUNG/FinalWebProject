@@ -1,0 +1,32 @@
+.for-you:hover {
+    background-color: black;
+    color: white;
+}
+
+.offer {
+    position: relative;
+}
+
+.offer h2 {
+    position: absolute;
+    top: 50%;
+    left: 10%;
+}
+
+.offer-button {
+    background-color: rgb(255, 255, 255, 0.5);
+    font-size: 30px;
+    position: absolute;
+    top: 50%;
+    left: 70%;
+    border: solid black 1px;
+    width: 300px;
+    height: 100px;
+    z-index: 0.5;
+    transform: translate(-50%, -50%);
+}
+
+.offer-button:hover {
+    background-color: black;
+    color: white;
+}

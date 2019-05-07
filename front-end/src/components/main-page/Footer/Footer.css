@@ -1,0 +1,12 @@
+.footer {
+    height: 200px;
+    background-color: white;
+}
+
+.col-3 {
+    margin-top: 20px;
+}
+
+p {
+    margin-bottom: 0.5rem !important;
+}
