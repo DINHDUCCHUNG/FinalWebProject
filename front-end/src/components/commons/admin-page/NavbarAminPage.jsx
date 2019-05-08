@@ -12,6 +12,7 @@ import {
   DropdownMenu,
   DropdownItem
 } from "reactstrap";
+import config from '../../../config'
 
 const NavbarAdminPage = props => {
   return (
@@ -26,7 +27,7 @@ const NavbarAdminPage = props => {
                 <DropdownToggle nav caret style={{ color: "white" }}>
                 <img
                   style={{marginRight: "4%", padding: "0% 1% 3%"}}
-                  src="http://localhost:3001/admin.png"
+                  src={`${config.baseUrl}/admin.png`}
                   alt=""
                   width="30"
                   height="30"
@@ -73,8 +74,6 @@ const NavbarAdminPage = props => {
                     Sản Phẩm
                   </DropdownToggle>
                   <DropdownMenu style={{ margin: "0.35rem 50px 0" }}>
-                    <DropdownItem>Quản lý danh mục sản phẩm</DropdownItem>
-                    <DropdownItem>Thêm danh mục sản phẩm</DropdownItem>
                     <DropdownItem href="/admin-page/manage-production">
                       Quản lý sản phẩm
                     </DropdownItem>

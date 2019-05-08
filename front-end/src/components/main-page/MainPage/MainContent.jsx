@@ -1,69 +1,94 @@
-import React from 'react';
-import ControlledCarousel from './Carousel';
-import './MainContent.css';
-import Axios from 'axios';
-import { Link } from 'react-router-dom'
+import React from "react";
+import ControlledCarousel from "./Carousel";
+import "./MainContent.css";
+import { Carousel, Container } from "react-bootstrap";
+import config from "../../../config";
+import Axios from "axios";
+import "./MainContent.css";
 
 class MainContent extends React.Component {
-    state = {
-        items: []
-    }
+  constructor(props, context) {
+    super(props, context);
 
-    componentDidMount() {
-        console.log(this.props);
+    this.handleSelect = this.handleSelect.bind(this);
 
-        Axios({
-            url: `http://localhost:3001/api/productions/all/count`,
-            method: 'get'
-        }).then((response) => {
-            console.log(response.data);
-            let items = []
-            for (let i = 0; i < 3; i++) {
-                items.push(response.data[i]);
-            }
+    this.state = {
+      index: 0,
+      direction: null
+    };
+  }
 
-            this.setState({
-                items: items
-            })
-        }).catch((error) => {
-            console.log(error);
-        })
-    }
+  handleSelect(selectedIndex, e) {
+    this.setState({
+      index: selectedIndex,
+      direction: e.direction
+    });
+  }
 
-    render() {
-        let items = this.state.items.map((item) => {
-            return (
-                <Link to="" className="col-3" key={item._id}>
-                    <div  >
-                        <img src={item.image} />
-                        <h6>{item.title}</h6>
-                    </div>
-                </Link>
-            )
-        })
+  render() {
+    const { index, direction } = this.state;
 
-        return (
-            <div className='main-content' style={{ backgroundColor: "white", paddingTop: "70px" }}>
-                <ControlledCarousel />
-                <div className="container" style={{marginBottom: "20px"}}>
-                    <div className="row text-center">
-                        <div className="col-3">
-                            <h2>For you</h2>
-                            <button className="for-you" style={{border: "solid black 1px", height: "40px"}}>Learn more</button>
-                        </div>
-                        {items}
-                    </div>
-                </div>
-                <div className="offer">
-                    <img style={{ width: "100%", height: "400px" }} src="https://cdn.pixabay.com/photo/2016/04/15/04/02/water-1330252__340.jpg" />
-                    <h2>Discount 50% and more</h2>
-                    <a href="">
-                        <button className="offer-button">SEE MORE OFFERS</button>
-                    </a>
-                </div>
-            </div>
-        )
-    }
+    return (
+      <div style={{backgroundImage: `url(${config.baseUrl}/background.jpg)`, backgroundRepeat: "no-repeat"}}>
+        <Carousel
+          activeIndex={index}
+          direction={direction}
+          onSelect={this.handleSelect}
+        >
+          <Carousel.Item>
+            <Container className='item'>
+              <img
+                className="d-block rounded-circle center"
+                src={`${config.baseUrl}/cosmetic1.jpg`}
+                alt="First slide"
+                height="500"
+                width="500"
+              />
+              <Carousel.Caption>
+                <h1>Skincare</h1>
+                <h2>Night Cream</h2>
+              </Carousel.Caption>
+            </Container>
+          </Carousel.Item>
+          <Carousel.Item>
+            <style>
+              @import
+              url('https://fonts.googleapis.com/css?family=Alfa+Slab+One');
+            </style>
+            <Container className='item'>
+              <img
+                className="d-block rounded-circle center"
+                src={`${config.baseUrl}/cosmetic2.png`}
+                alt="Third slide"
+                height="500"
+                width="500"
+              />
+
+              <Carousel.Caption>
+                <h1>Eyeshadow</h1>
+                <h2>Mascara</h2>
+              </Carousel.Caption>
+            </Container>
+          </Carousel.Item>
+          <Carousel.Item>
+            <Container className='item'>
+              <img
+                className="d-block rounded-circle center"
+                src={`${config.baseUrl}/cosmetic3.png`}
+                alt="Third slide"
+                height="500"
+                width="500"
+              />
+
+              <Carousel.Caption>
+                <h1>Nail</h1>
+                <h2>Beauty</h2>
+              </Carousel.Caption>
+            </Container>
+          </Carousel.Item>
+        </Carousel>
+      </div>
+    );
+  }
 }
-
 export default MainContent;

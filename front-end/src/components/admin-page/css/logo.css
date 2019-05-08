@@ -1,10 +1,10 @@
 .main img {
-  animation: flipInY infinite 5s linear;
+  animation: flipy infinite 5s linear;
   margin-top: 5%;
   cursor: pointer; 
 }
 
-@keyframes flipInY {
+@keyframes flipy {
     from {
       -webkit-transform: perspective(400px) rotate3d(0, 1, 0, 90deg);
       transform: perspective(400px) rotate3d(0, 1, 0, 90deg);
