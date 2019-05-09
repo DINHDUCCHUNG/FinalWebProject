@@ -9,7 +9,8 @@ const customerRouter = require("./api/customer/routes");
 const productionRouter = require("./api/productions/routes");
 const authRouter = require("./api/auth/routes");
 const uploadFileRouter = require("./api/upload-file/routes");
-
+mongoose.set('useNewUrlParser', true);
+mongoose.set('useFindAndModify', false);
 mongoose.connect("mongodb://localhost:27017/webProjectMypham", error => {
   if (error) {
     throw error;

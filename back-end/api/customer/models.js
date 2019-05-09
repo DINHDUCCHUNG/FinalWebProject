@@ -12,6 +12,10 @@ const CustomerSchema = new mongoose.Schema({
     order:{
         production: String,
         bill: Number,
+    },
+    createAt:{
+        type: Date,
+        default: new Date(),
     }
 });
 

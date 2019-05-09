@@ -40,6 +40,7 @@ postRouter.get("/", async (req, res) => {
 
 postRouter.put("/update", async (req, res) => {
   try {
+    console.log("postput:",req.session);
     if (!req.session.admin) {
       res.status(403).json({
         message: "Unauthenticated"
@@ -57,5 +58,12 @@ postRouter.put("/update", async (req, res) => {
     res.status(500).end(error.message);
   }
 });
-
+postRouter.get('/all/count', async (req, res) => {
+  try {
+      const data = await PostModel.find().exec();
+      res.status(200).json(data);
+  } catch (error) {
+      res.status(500).end(error.message);
+  }
+})
 module.exports = postRouter;

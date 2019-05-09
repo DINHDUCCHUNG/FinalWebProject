@@ -74,7 +74,9 @@ authRouter.get("/test", (req, res) => {
 
 authRouter.get("/logout", (req, res) => {
   try {
+    console.log("louout",res.session);
     req.session.destroy();
+    res.clearCookie('connect.sid');
     res.status(200).json({
       message: "logout success!",
       success: true

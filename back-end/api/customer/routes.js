@@ -19,7 +19,7 @@ customerRouter.get('/',async(req,res)=>{
         .skip(pageSize*(pageNumber-1))
         .limit(Number(pageSize))
         .exec();
-        res.status.json(orderInfo);
+        res.status(200).json(orderInfo);
     }catch(error){
         res.status(500).end(error.message);
     }

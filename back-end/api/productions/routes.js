@@ -20,7 +20,15 @@ productionRouter.post("/", async (req, res) => {
     res.status(500).end(error.message);
   }
 });
-
+productionRouter.get("/:productionId", async (req, res) => {
+  try {
+    const { productionId } = req.params;
+    const productionInfo = await ProductionModel.findById(productionId).exec();
+    res.status(200).json(productionInfo);
+  } catch (error) {
+    res.status(500).end(error.message);
+  }
+});
 productionRouter.get("/", async (req, res) => {
   try {
     const { pageNumber, pageSize } = req.query;
@@ -42,7 +50,7 @@ productionRouter.put("/update", async (req, res) => {
   try {
     if (!req.session.admin) {
       res.status(403).json({
-        message: 'Unauthenticated'
+        message: "Unauthenticated"
       });
     } else {
       const productionId = req.body.productionId;
@@ -53,6 +61,15 @@ productionRouter.put("/update", async (req, res) => {
       }).exec();
       res.status(200).end("update success!");
     }
+  } catch (error) {
+    res.status(500).end(error.message);
+  }
+});
+
+productionRouter.get("/all/count", async (req, res) => {
+  try {
+    const data = await ProductionModel.find().exec();
+    res.status(200).json(data);
   } catch (error) {
     res.status(500).end(error.message);
   }
