@@ -9,6 +9,7 @@ import ManageProduction from "../../components/admin-page/ManageProduction";
 import AddBlog from "../../components/admin-page/AddBlogs";
 import ManageBlog from "../../components/admin-page/ManageBlogs";
 import IntroManage from "../../components/admin-page/IntroManage";
+import Order from "../../components/admin-page/Order";
 
 class AdminPage extends React.Component {
   handleLogout = () => {
@@ -37,6 +38,7 @@ class AdminPage extends React.Component {
           />
           <Route path="/admin-page/add-blog" component={AddBlog} />
           <Route path="/admin-page/manage-blog" component={ManageBlog} />
+          <Route path="/admin-page/order" component={Order} />
         </BrowserRouter>
       </div>
     );

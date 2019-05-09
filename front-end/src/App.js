@@ -11,7 +11,7 @@ class App extends Component {
       <div className="App">
         <BrowserRouter>
           {/* Main */}
-          <Route path="/" component={MainPage} /> 
+          <Route path="/home"component={MainPage} /> 
 
             {/* Amin */}
           <Route path="/admin-login"  component={LoginAdmin} />

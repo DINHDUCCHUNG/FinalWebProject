@@ -1,6 +1,7 @@
 import React from 'react';
 import './DetailScreen.css';
-import { withRouter } from 'react-router-dom';
+import config from "../../../config";
+import {withRouter} from 'react-router-dom'
 
 class DetailScreen extends React.Component {
 
@@ -10,7 +11,7 @@ class DetailScreen extends React.Component {
 
     handleBuyButtonClick = () => {
         console.log(this.props.history);
-        this.props.history.push(`Buy/${this.props.item._id}`);
+        this.props.history.push(`/home/buy/${this.props.item._id}`);
     }
 
     render() {

@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
-import Navbar from '../../components/main-page/Navbar/Navbar';
-import DetailScreen from '../../components/main-page/ProductDetail/DetailScreen';
+import DetailScreen from './DetailScreen';
+import config from "../../../config";
 
 class ProductDetail extends React.Component {
     state = {
@@ -13,7 +13,7 @@ class ProductDetail extends React.Component {
         const productId = pathname.split('/')[pathname.split('/').length - 1];
 
         axios({
-            url: `http://localhost:3001/api/productions/${productId}`,
+            url: `${config.baseUrl}/api/productions/${productId}`,
             method: 'get'
         }).then((response) => {
             this.setState({
@@ -27,7 +27,6 @@ class ProductDetail extends React.Component {
     render() {
         return (
             <div>
-                <Navbar />
                 <div style={{paddingTop: '100px'}}>
                     <DetailScreen item={this.state.item}/>
                 </div>

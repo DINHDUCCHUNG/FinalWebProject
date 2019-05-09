@@ -1,7 +1,8 @@
 import React from 'react';
-import Navbar from '../../components/main-page/Navbar/Navbar';
 import { Form, Button } from 'reactstrap';
 import Axios from 'axios';
+import config from "../../../config";
+import { Alert } from 'react-bootstrap';
 
 class BuyScreen extends React.Component {
     state = {
@@ -12,7 +13,8 @@ class BuyScreen extends React.Component {
         order: {
             production: '',
             bill: 0
-        }
+        },
+        isAlert: false,
     }
 
     componentDidMount() {
@@ -21,7 +23,7 @@ class BuyScreen extends React.Component {
         const productId = pathname[pathname.length - 1];
 
         Axios({
-            url: `http://localhost:3001/api/productions/${productId}`,
+            url: `${config.baseUrl}/api/productions/${productId}`,
             method: 'get'
         }).then((response) => {
             console.log(response.data)
@@ -66,7 +68,7 @@ class BuyScreen extends React.Component {
         event.preventDefault();
 
         Axios({
-            url: "http://localhost:3001/api/customer/",
+            url: `${config.baseUrl}/api/customer/`,
             method: "post",
             data: {
                 email: this.state.email,
@@ -78,9 +80,13 @@ class BuyScreen extends React.Component {
                     bill: this.state.order.bill
                 }
             }
-        }).then(
-            console.log("success")
-        ).catch((error) => {
+        }).then(()=>{
+            console.log("success");
+            this.setState({
+                isAlert: true,
+            })
+            this.props.history.push('/home');
+        }).catch((error) => {
             console.log(error);
         })
     }
@@ -88,9 +94,9 @@ class BuyScreen extends React.Component {
     render() {
         return (
             <div>
-                <Navbar />
-                <div className="container" style={{ paddingTop: "100px" }}>
-                    <div className="row">
+                {this.state.isAlert ? alert("Mua hàng thành công!"): null}
+                <div className="container">
+                    <div className="row ">
                         <Form onSubmit={this.handleSubmit} className="col-6">
                             <div className="form-group">
                                 <label>Full Name <span className="text-danger">*</span></label>

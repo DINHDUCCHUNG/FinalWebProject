@@ -1,5 +1,4 @@
 import React from "react";
-import ControlledCarousel from "./Carousel";
 import "./MainContent.css";
 import { Carousel, Container } from "react-bootstrap";
 import config from "../../../config";
